@@ -762,7 +762,10 @@ function addCallout({
     .append("rect")
     .attr("width", boxWidth)
     .attr("height", boxHeight)
-    .attr("rx", 5);
+    .attr("rx", 5)
+    .style("fill", "white")
+    .style("stroke", "#aaa")
+    .style("stroke-width", "1px");
 
 
   annotation
@@ -894,7 +897,10 @@ function addComparisonAnnotation(
     .append("rect")
     .attr("width", boxWidth)
     .attr("height", boxHeight)
-    .attr("rx", 5);
+    .attr("rx", 5)
+    .style("fill", "white")
+    .style("stroke", "#aaa")
+    .style("stroke-width", "1px");
 
 
   annotation
