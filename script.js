@@ -328,6 +328,8 @@ function renderScene1() {
     .attr("r", 4)
     .attr("opacity", 0.55)
     .attr("fill", "#4c78a8");
+    .attr("stroke", "white")
+    .attr("stroke-width", 0.7)
 
 
   const maxRangeVehicle =
@@ -398,6 +400,8 @@ function renderScene2() {
     .attr("r", 4)
     .attr("opacity", 0.42)
     .attr("fill", "#4c78a8");
+    .attr("stroke", "white")
+    .attr("stroke-width", 0.7)
 
 
   // ----------------------------------------------------------
@@ -526,10 +530,10 @@ function renderScene3() {
       d => {
 
         if (d === buzz)
-          return "#d97706";
+          return "#e67e22";
 
         if (d === id7)
-          return "#0f766e";
+          return "#00897b";
 
         return "#4c78a8";
       }
@@ -547,6 +551,8 @@ function renderScene3() {
       .transition()
       .duration(600)
       .attr("r", 7);
+      .attr("stroke", "#333")
+      .attr("stroke-width", 1.5);
 
 
     addComparisonAnnotation(
@@ -845,39 +851,25 @@ function addComparisonAnnotation(
   // Leader line to ID. Buzz
   annotationLayer
     .append("line")
-    .attr(
-      "class",
-      "annotation-line"
-    )
-    .attr(
-      "x1",
-      boxX + boxWidth
-    )
-    .attr(
-      "y1",
-      boxY + 60
-    )
+    .attr("class", "annotation-line")
+    .attr("x1", boxX + boxWidth)
+    .attr("y1", boxY + 60)
     .attr("x2", buzzX)
-    .attr("y2", buzzY);
+    .attr("y2", buzzY)
+    .attr("stroke", "#e67e22")
+    .attr("stroke-width", 2);
 
 
   // Leader line to ID.7
   annotationLayer
     .append("line")
-    .attr(
-      "class",
-      "annotation-line"
-    )
-    .attr(
-      "x1",
-      boxX + boxWidth
-    )
-    .attr(
-      "y1",
-      boxY + 35
-    )
+    .attr("class", "annotation-line")
+    .attr("x1", boxX + boxWidth)
+    .attr("y1", boxY + 35)
     .attr("x2", id7X)
-    .attr("y2", id7Y);
+    .attr("y2", id7Y)
+    .attr("stroke", "#00897b")
+    .attr("stroke-width", 2);
 
 
   const annotation =
