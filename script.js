@@ -323,13 +323,14 @@ function renderScene1() {
   // Display every EV normally.
   pointsLayer
     .selectAll("circle")
+    .interrupt()
     .transition()
     .duration(600)
     .attr("r", 4)
-    .attr("opacity", 0.55)
-    .attr("fill", "#4c78a8")
-    .attr("stroke", "white")
-    .attr("stroke-width", 0.7);
+    .style("opacity", 0.55)
+    .style("fill", "#4c78a8")
+    .style("stroke", "white")
+    .style("stroke-width", "0.7px");
 
 
   const maxRangeVehicle =
@@ -395,13 +396,14 @@ function renderScene2() {
 
   pointsLayer
     .selectAll("circle")
+    .interrupt()
     .transition()
     .duration(600)
     .attr("r", 4)
-    .attr("opacity", 0.42)
-    .attr("fill", "#4c78a8")
-    .attr("stroke", "white")
-    .attr("stroke-width", 0.7);
+    .style("opacity", 0.42)
+    .style("fill", "#4c78a8")
+    .style("stroke", "white")
+    .style("stroke-width", "0.7px");
 
 
   // ----------------------------------------------------------
