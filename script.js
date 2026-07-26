@@ -510,58 +510,70 @@ function renderScene3() {
     );
 
 
-  // Fade all other vehicles.
+  // Highlight the two comparison vehicles and fade all others.
   pointsLayer
     .selectAll("circle")
+    .interrupt()
     .transition()
     .duration(600)
-    .attr("r", 3.5)
+  
     .attr(
-      "opacity",
-      d =>
-        d === buzz || d === id7
-          ? 1
-          : state.explorationEnabled
-            ? 0.50
-            : 0.10
+      "r",
+      d => (d === buzz || d === id7) ? 7 : 3.5
     )
-    .attr(
+  
+    .style(
+      "opacity",
+      d => {
+        if (d === buzz || d === id7) {
+          return 1;
+        }
+  
+        return state.explorationEnabled
+          ? 0.50
+          : 0.10;
+      }
+    )
+  
+    .style(
       "fill",
       d => {
-
-        if (d === buzz)
+        // ID. Buzz = orange
+        if (d === buzz) {
           return "#e67e22";
-
-        if (d === id7)
+        }
+  
+        // ID.7 = teal
+        if (d === id7) {
           return "#00897b";
-
+        }
+  
         return "#4c78a8";
       }
+    )
+  
+    .style(
+      "stroke",
+      d => (d === buzz || d === id7)
+        ? "#333"
+        : "white"
+    )
+  
+    .style(
+      "stroke-width",
+      d => (d === buzz || d === id7)
+        ? "1.5px"
+        : "0.7px"
     );
-
-
-  // Highlight comparison vehicles.
+  
+  
   if (buzz && id7) {
-
-    pointsLayer
-      .selectAll("circle")
-      .filter(
-        d => d === buzz || d === id7
-      )
-      .transition()
-      .duration(600)
-      .attr("r", 7)
-      .attr("stroke", "#333")
-      .attr("stroke-width", 1.5);
-
-
     addComparisonAnnotation(
       buzz,
       id7
     );
   }
 }
-
 
 // ============================================================
 // STEP 13 — FREE EXPLORATION
