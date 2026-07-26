@@ -870,8 +870,8 @@ function addComparisonAnnotation(
     .attr("y1", boxY + 60)
     .attr("x2", buzzX)
     .attr("y2", buzzY)
-    .attr("stroke", "#e67e22")
-    .attr("stroke-width", 2);
+    .style("stroke", "#e67e22")
+    .style("stroke-width", "2px");
 
 
   // Leader line to ID.7
@@ -882,8 +882,8 @@ function addComparisonAnnotation(
     .attr("y1", boxY + 35)
     .attr("x2", id7X)
     .attr("y2", id7Y)
-    .attr("stroke", "#00897b")
-    .attr("stroke-width", 2);
+    .style("stroke", "#00897b")
+    .style("stroke-width", "2px");
 
 
   const annotation =
