@@ -327,9 +327,9 @@ function renderScene1() {
     .duration(600)
     .attr("r", 4)
     .attr("opacity", 0.55)
-    .attr("fill", "#4c78a8");
+    .attr("fill", "#4c78a8")
     .attr("stroke", "white")
-    .attr("stroke-width", 0.7)
+    .attr("stroke-width", 0.7);
 
 
   const maxRangeVehicle =
@@ -399,9 +399,9 @@ function renderScene2() {
     .duration(600)
     .attr("r", 4)
     .attr("opacity", 0.42)
-    .attr("fill", "#4c78a8");
+    .attr("fill", "#4c78a8")
     .attr("stroke", "white")
-    .attr("stroke-width", 0.7)
+    .attr("stroke-width", 0.7);
 
 
   // ----------------------------------------------------------
@@ -550,7 +550,7 @@ function renderScene3() {
       )
       .transition()
       .duration(600)
-      .attr("r", 7);
+      .attr("r", 7)
       .attr("stroke", "#333")
       .attr("stroke-width", 1.5);
 
