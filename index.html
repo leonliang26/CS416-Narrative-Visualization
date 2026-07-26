@@ -3,17 +3,154 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EV Driving Range</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>What Affects Electric Vehicle Driving Range?</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 
 <body>
 
-  <h1>What Affects Electric Vehicle Driving Range?</h1>
+  <main class="page-container">
 
-  <p>
-    CS 416 Narrative Visualization Project
-  </p>
+    <!-- =========================
+         Page Header
+    ========================== -->
+
+    <header>
+
+      <h1>
+        What Affects Electric Vehicle Driving Range?
+      </h1>
+
+      <p class="subtitle">
+        A Narrative Visualization of 2025 Electric Vehicle Specifications
+      </p>
+
+    </header>
+
+
+    <!-- =========================
+         Scene Information
+    ========================== -->
+
+    <section class="scene-header">
+
+      <div
+        id="scene-number"
+        class="scene-number"
+      >
+        Scene 1 of 3
+      </div>
+
+      <h2 id="scene-title">
+        EV Driving Range Varies Widely
+      </h2>
+
+      <p id="scene-description">
+        Electric vehicles differ substantially in both battery
+        capacity and driving range.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         Visualization
+    ========================== -->
+
+    <section class="chart-container">
+
+      <svg
+        id="chart"
+        viewBox="0 0 900 470"
+      >
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         Interaction Instructions
+    ========================== -->
+
+    <p id="interaction-hint">
+      Click Next to continue the story.
+    </p>
+
+
+    <!-- =========================
+         Exploration
+    ========================== -->
+
+    <section
+      id="explore-section"
+      class="hidden"
+    >
+
+      <button id="explore-button">
+        Explore the Data
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         Navigation
+    ========================== -->
+
+    <nav class="navigation">
+
+      <button
+        id="previous"
+        disabled
+      >
+        Previous
+      </button>
+
+      <span id="progress">
+        Scene 1 of 3
+      </span>
+
+      <button id="next">
+        Next
+      </button>
+
+    </nav>
+
+
+    <!-- =========================
+         Tooltip
+    ========================== -->
+
+    <div id="tooltip"></div>
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer>
+
+      Data Source:
+      Electric Vehicle Specifications Dataset (2025)
+
+    </footer>
+
+  </main>
+
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 
 </body>
 
