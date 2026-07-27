@@ -9,8 +9,8 @@ body {
 
   background-image:
     linear-gradient(
-      rgba(247, 247, 247, 0.6),
-      rgba(247, 247, 247, 0.6)
+      rgba(247, 247, 247, 0.25),
+      rgba(247, 247, 247, 0.25)
     ),
     url("assets/car-background.jpg");
 
@@ -25,7 +25,7 @@ body {
   margin: 0 auto;
   padding: 24px;
 
-  background: rgba(247, 247, 247, 0.72);
+  background: rgba(247, 247, 247, 0.45);
 }
 
 
