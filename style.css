@@ -1,7 +1,6 @@
 /* =========================================================
    General Page
 ========================================================= */
-
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -28,7 +27,6 @@ body {
   background: rgba(247, 247, 247, 0.45);
 }
 
-
 /* =========================================================
    Header
 ========================================================= */
@@ -47,7 +45,6 @@ h1 {
   color: #666;
   font-size: 16px;
 }
-
 
 /* =========================================================
    Scene Information
@@ -72,7 +69,6 @@ h1 {
   max-width: 800px;
 }
 
-
 /* =========================================================
    Visualization Container
 ========================================================= */
@@ -90,7 +86,6 @@ h1 {
   height: auto;
   aspect-ratio: 900 / 470;
 }
-
 
 /* =========================================================
    D3 Axes
@@ -112,7 +107,6 @@ h1 {
   font-weight: 600;
 }
 
-
 /* =========================================================
    Data Points
 ========================================================= */
@@ -121,7 +115,6 @@ h1 {
   stroke: white;
   stroke-width: 0.7px;
 }
-
 
 /* =========================================================
    Scene 2 Trend Line
@@ -132,7 +125,6 @@ h1 {
   stroke-width: 2px;
   stroke-dasharray: 6 4;
 }
-
 
 /* =========================================================
    Annotations
@@ -146,18 +138,11 @@ h1 {
   pointer-events: none;
 }
 
-
-/*
-  IMPORTANT:
-  SVG rect defaults to black if no fill is specified.
-  This rule fixes the black annotation boxes.
-*/
 .annotation-panel rect {
   fill: white;
   stroke: #aaa;
   stroke-width: 1px;
 }
-
 
 /* Annotation title */
 
@@ -167,14 +152,12 @@ h1 {
   font-weight: 700;
 }
 
-
 /* Annotation body text */
 
 .annotation-text {
   fill: #444;
   font-size: 12px;
 }
-
 
 /* Line connecting annotation to data */
 
@@ -183,13 +166,11 @@ h1 {
   stroke-width: 1.3px;
 }
 
-
 /* Small target point */
 
 .annotation-target {
   fill: #555;
 }
-
 
 /* Kept for any general annotation text */
 
@@ -197,7 +178,6 @@ h1 {
   font-size: 14px;
   font-weight: 600;
 }
-
 
 /* =========================================================
    Interaction Hint
@@ -209,7 +189,6 @@ h1 {
   font-size: 14px;
   color: #555;
 }
-
 
 /* =========================================================
    Navigation
@@ -245,7 +224,6 @@ button:disabled {
   color: #555;
 }
 
-
 /* =========================================================
    Explore Area
 ========================================================= */
@@ -262,7 +240,6 @@ button:disabled {
 .hidden {
   display: none;
 }
-
 
 /* =========================================================
    Tooltip
@@ -292,7 +269,6 @@ button:disabled {
     rgba(0, 0, 0, 0.15);
 }
 
-
 /* =========================================================
    Footer
 ========================================================= */
@@ -310,7 +286,6 @@ footer {
 footer a {
   color: inherit;
 }
-
 
 /* =========================================================
    Responsive Layout
