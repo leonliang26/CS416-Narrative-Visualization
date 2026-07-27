@@ -1,13 +1,8 @@
-// ============================================================
 // CS 416 Narrative Visualization
 // What Affects Electric Vehicle Driving Range?
 // Narrative Structure: Martini Glass
-// ============================================================
 
-
-// ------------------------------------------------------------
 // Parameters / State
-// ------------------------------------------------------------
 
 const state = {
   scene: 1,
@@ -15,10 +10,7 @@ const state = {
   explorationEnabled: false
 };
 
-
-// ------------------------------------------------------------
 // Chart Setup
-// ------------------------------------------------------------
 
 const svg = d3.select("#chart");
 
@@ -38,7 +30,6 @@ const innerWidth =
 const innerHeight =
   height - margin.top - margin.bottom;
 
-
 // Variables that will be created after loading the CSV
 let data;
 let xScale;
@@ -51,10 +42,7 @@ let annotationLayer;
 const tooltip =
   d3.select("#tooltip");
 
-
-// ------------------------------------------------------------
 // Load Data
-// ------------------------------------------------------------
 
 d3.csv("cars_clean.csv")
   .then(rawData => {
@@ -126,20 +114,13 @@ d3.csv("cars_clean.csv")
       );
   });
 
-
-// ============================================================
 // STEP 9 — BASE SCATTERPLOT
-// ============================================================
 
 function initializeChart() {
 
   svg.selectAll("*").remove();
 
-
-  // ----------------------------------------------------------
   // Scales
-  // ----------------------------------------------------------
-
   xScale = d3.scaleLinear()
     .domain(
       d3.extent(
@@ -152,7 +133,6 @@ function initializeChart() {
       margin.left,
       width - margin.right
     ]);
-
 
   yScale = d3.scaleLinear()
     .domain(
@@ -167,11 +147,7 @@ function initializeChart() {
       margin.top
     ]);
 
-
-  // ----------------------------------------------------------
   // X Axis
-  // ----------------------------------------------------------
-
   svg.append("g")
     .attr("class", "axis")
     .attr(
@@ -182,12 +158,8 @@ function initializeChart() {
       d3.axisBottom(xScale)
         .ticks(8)
     );
-
-
-  // ----------------------------------------------------------
+  
   // Y Axis
-  // ----------------------------------------------------------
-
   svg.append("g")
     .attr("class", "axis")
     .attr(
@@ -199,18 +171,13 @@ function initializeChart() {
         .ticks(7)
     );
 
-
-  // ----------------------------------------------------------
   // Axis Labels
-  // ----------------------------------------------------------
-
   svg.append("text")
     .attr("class", "axis-label")
     .attr("x", width / 2)
     .attr("y", height - 12)
     .attr("text-anchor", "middle")
     .text("Battery Capacity (kWh)");
-
 
   svg.append("text")
     .attr("class", "axis-label")
@@ -222,7 +189,6 @@ function initializeChart() {
     .attr("y", 18)
     .attr("text-anchor", "middle")
     .text("Driving Range (km)");
-
 
   // Layers are separated so annotations always stay above data.
   trendLayer =
@@ -237,11 +203,7 @@ function initializeChart() {
     svg.append("g")
       .attr("class", "annotation-layer");
 
-
-  // ----------------------------------------------------------
   // Data Points
-  // ----------------------------------------------------------
-
   pointsLayer
     .selectAll("circle")
     .data(
@@ -268,11 +230,7 @@ function initializeChart() {
     .on("mouseout", hideTooltip);
 }
 
-
-// ============================================================
 // SCENE CONTROLLER
-// ============================================================
-
 function renderScene() {
 
   tooltip.style("display", "none");
@@ -280,11 +238,9 @@ function renderScene() {
   trendLayer
     .selectAll("*")
     .remove();
-
   annotationLayer
     .selectAll("*")
     .remove();
-
 
   if (state.scene === 1) {
 
@@ -299,15 +255,11 @@ function renderScene() {
     renderScene3();
   }
 
-
   updateNavigation();
 }
 
-
-// ============================================================
 // STEP 10 — SCENE 1
 // EV Driving Range Varies Widely
-// ============================================================
 
 function renderScene1() {
 
@@ -318,7 +270,6 @@ function renderScene1() {
 
     "Click Next to see one of the strongest factors associated with driving range."
   );
-
 
   // Display every EV normally.
   pointsLayer
@@ -331,7 +282,6 @@ function renderScene1() {
     .style("fill", "#4c78a8")
     .style("stroke", "white")
     .style("stroke-width", "0.7px");
-
 
   const maxRangeVehicle =
     d3.greatest(
@@ -350,7 +300,6 @@ function renderScene1() {
       data,
       d => d.range_km
     );
-
 
   addCallout({
     boxX: 85,
@@ -377,11 +326,8 @@ function renderScene1() {
   });
 }
 
-
-// ============================================================
 // STEP 11 — SCENE 2
 // Bigger Batteries Generally Mean Longer Range
-// ============================================================
 
 function renderScene2() {
 
@@ -392,7 +338,6 @@ function renderScene2() {
 
     "Notice the upward pattern from smaller batteries toward longer-range EVs."
   );
-
 
   pointsLayer
     .selectAll("circle")
@@ -405,11 +350,7 @@ function renderScene2() {
     .style("stroke", "white")
     .style("stroke-width", "0.7px");
 
-
-  // ----------------------------------------------------------
   // Simple Linear Trend Line
-  // ----------------------------------------------------------
-
   const regression =
     calculateRegression(data);
 
@@ -421,7 +362,6 @@ function renderScene2() {
 
   const x2 =
     xDomain[1];
-
 
   trendLayer
     .append("line")
@@ -450,13 +390,11 @@ function renderScene2() {
       )
     );
 
-
   const targetBattery =
     105;
 
   const targetRange =
     regression(targetBattery);
-
 
   addCallout({
     boxX: 80,
@@ -479,12 +417,8 @@ function renderScene2() {
   });
 }
 
-
-// ============================================================
 // STEP 12 — SCENE 3
 // Battery Size Is Not the Whole Story
-// ============================================================
-
 function renderScene3() {
 
   setSceneText(
@@ -497,20 +431,17 @@ function renderScene3() {
       : "Compare the highlighted vehicles, then click Explore the Data."
   );
 
-
   const buzz =
     data.find(d =>
       d.brand === "Volkswagen" &&
       d.model === "ID. Buzz LWB Pro"
     );
 
-
   const id7 =
     data.find(d =>
       d.brand === "Volkswagen" &&
       d.model === "ID.7 Pro S"
     );
-
 
   // Highlight the two comparison vehicles and fade all others.
   pointsLayer
@@ -577,10 +508,7 @@ function renderScene3() {
   }
 }
 
-// ============================================================
 // STEP 13 — FREE EXPLORATION
-// ============================================================
-
 function enableExploration() {
 
   state.explorationEnabled = true;
@@ -588,11 +516,7 @@ function enableExploration() {
   renderScene();
 }
 
-
-// ============================================================
 // STEP 14 — PARAMETERS + TRIGGERS
-// ============================================================
-
 
 // Next button
 d3.select("#next")
@@ -612,7 +536,6 @@ d3.select("#next")
     }
   });
 
-
 // Previous button
 d3.select("#previous")
   .on("click", () => {
@@ -628,7 +551,6 @@ d3.select("#previous")
     }
   });
 
-
 // Explore button
 d3.select("#explore-button")
   .on(
@@ -636,11 +558,7 @@ d3.select("#explore-button")
     enableExploration
   );
 
-
-// ============================================================
 // Navigation / Affordances
-// ============================================================
-
 function updateNavigation() {
 
   d3.select("#scene-number")
@@ -653,13 +571,11 @@ function updateNavigation() {
       `Scene ${state.scene} of ${state.totalScenes}`
     );
 
-
   d3.select("#previous")
     .property(
       "disabled",
       state.scene === 1
     );
-
 
   d3.select("#next")
     .property(
@@ -668,14 +584,12 @@ function updateNavigation() {
         state.totalScenes
     );
 
-
   // Explore button only appears in Scene 3.
   d3.select("#explore-section")
     .classed(
       "hidden",
       state.scene !== 3
     );
-
 
   d3.select("#explore-button")
     .property(
@@ -688,7 +602,6 @@ function updateNavigation() {
         : "Explore the Data"
     );
 
-
   pointsLayer
     .selectAll("circle")
     .style(
@@ -699,11 +612,7 @@ function updateNavigation() {
     );
 }
 
-
-// ============================================================
 // Scene Text
-// ============================================================
-
 function setSceneText(
   title,
   description,
@@ -720,11 +629,7 @@ function setSceneText(
     .text(hint);
 }
 
-
-// ============================================================
 // Annotation Helper
-// ============================================================
-
 function addCallout({
   boxX,
   boxY,
@@ -737,7 +642,6 @@ function addCallout({
 
   const boxHeight =
     48 + lines.length * 18;
-
 
   annotationLayer
     .append("line")
@@ -753,7 +657,6 @@ function addCallout({
     .attr("x2", targetX)
     .attr("y2", targetY);
 
-
   annotationLayer
     .append("circle")
     .attr(
@@ -763,7 +666,6 @@ function addCallout({
     .attr("cx", targetX)
     .attr("cy", targetY)
     .attr("r", 4);
-
 
   const annotation =
     annotationLayer
@@ -777,7 +679,6 @@ function addCallout({
         `translate(${boxX},${boxY})`
       );
 
-
   annotation
     .append("rect")
     .attr("width", boxWidth)
@@ -786,7 +687,6 @@ function addCallout({
     .style("fill", "white")
     .style("stroke", "#aaa")
     .style("stroke-width", "1px");
-
 
   annotation
     .append("text")
@@ -797,7 +697,6 @@ function addCallout({
     .attr("x", 12)
     .attr("y", 22)
     .text(title);
-
 
   lines.forEach(
     (line, index) => {
@@ -818,11 +717,7 @@ function addCallout({
   );
 }
 
-
-// ============================================================
 // Scene 3 Comparison Annotation
-// ============================================================
-
 function addComparisonAnnotation(
   buzz,
   id7
@@ -861,7 +756,6 @@ function addComparisonAnnotation(
       id7.range_km
     );
 
-
   // Leader line to ID. Buzz
   annotationLayer
     .append("line")
@@ -873,7 +767,6 @@ function addComparisonAnnotation(
     .style("stroke", "#e67e22")
     .style("stroke-width", "2px");
 
-
   // Leader line to ID.7
   annotationLayer
     .append("line")
@@ -884,7 +777,6 @@ function addComparisonAnnotation(
     .attr("y2", id7Y)
     .style("stroke", "#00897b")
     .style("stroke-width", "2px");
-
 
   const annotation =
     annotationLayer
@@ -898,7 +790,6 @@ function addComparisonAnnotation(
         `translate(${boxX},${boxY})`
       );
 
-
   annotation
     .append("rect")
     .attr("width", boxWidth)
@@ -907,7 +798,6 @@ function addComparisonAnnotation(
     .style("fill", "white")
     .style("stroke", "#aaa")
     .style("stroke-width", "1px");
-
 
   annotation
     .append("text")
@@ -921,7 +811,6 @@ function addComparisonAnnotation(
       "Same 86 kWh battery, very different range"
     );
 
-
   annotation
     .append("text")
     .attr(
@@ -934,7 +823,6 @@ function addComparisonAnnotation(
       "ID. Buzz LWB Pro: 190 Wh/km → 370 km"
     );
 
-
   annotation
     .append("text")
     .attr(
@@ -946,7 +834,6 @@ function addComparisonAnnotation(
     .text(
       "ID.7 Pro S: 133 Wh/km → 525 km"
     );
-
 
   annotation
     .append("text")
@@ -961,11 +848,7 @@ function addComparisonAnnotation(
     );
 }
 
-
-// ============================================================
 // Linear Regression
-// ============================================================
-
 function calculateRegression(values) {
 
   const meanX =
@@ -980,7 +863,6 @@ function calculateRegression(values) {
       d => d.range_km
     );
 
-
   const numerator =
     d3.sum(
       values,
@@ -988,7 +870,6 @@ function calculateRegression(values) {
         (d.battery_capacity_kWh - meanX) *
         (d.range_km - meanY)
     );
-
 
   const denominator =
     d3.sum(
@@ -1000,23 +881,17 @@ function calculateRegression(values) {
         )
     );
 
-
   const slope =
     numerator / denominator;
 
   const intercept =
     meanY - slope * meanX;
 
-
   return x =>
     slope * x + intercept;
 }
 
-
-// ============================================================
 // Tooltip
-// ============================================================
-
 function showTooltip(
   event,
   d
@@ -1028,12 +903,10 @@ function showTooltip(
     return;
   }
 
-
   const fastCharging =
     d.fast_charging_power_kw_dc === null
       ? "N/A"
       : `${d.fast_charging_power_kw_dc} kW`;
-
 
   tooltip
     .style("display", "block")
@@ -1071,7 +944,6 @@ function showTooltip(
   );
 }
 
-
 function moveTooltip(event) {
 
   if (
@@ -1090,7 +962,6 @@ function moveTooltip(event) {
       `${event.pageY + 14}px`
     );
 }
-
 
 function hideTooltip() {
 
